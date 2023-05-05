@@ -1,0 +1,58 @@
+{% extends "extends/base.html" %}
+{% block title %}
+My Orders | Amazon
+{% endblock title %}
+{% block content %}
+{% include 'extends/msg.html' %}
+<div class="container" style="min-height: 623px;">
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-3">
+                <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
+                        href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div style="height: 500px;overflow-y:auto;">
+                        {% if orders %}
+                        <table class="table" style="text-align: center;">
+                            <thead>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th style="width: 70px;">Price</th>
+                                <th>Order Status</th>
+                            </thead>
+                            {% for item in orders reversed %}
+                            <tr>    
+                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}">
+                                    <div class="my-2"><img src="{{item.product.product_image.url}}"
+                                            style="height: 3.25rem;"></div></a>
+                                </td>
+                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}"><div class="my-3">{{ item.product.name }}</a></div></td>
+                                <td><div class="my-3">{{ item.quantity }}</div></td>
+                                <td><div class="my-3">{{ item.product.selling_price | stringformat:'d'}}</div></td>
+                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}"><div class="my-3">{{item.status}}</div></a></td>
+                            </a>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% else %}
+                        <div class="container"
+                            style="height: 26em;display: flex;align-items: center;justify-content: center">
+                            <p style="opacity: 0.7;font-size: large;"><b>Your Orders is Empty...</b></p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

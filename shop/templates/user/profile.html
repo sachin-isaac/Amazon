@@ -1,0 +1,164 @@
+{% extends "extends/base.html" %}
+{% include 'extends/navbar.html' %}
+{% load widget_tweaks %}
+{% block title %}
+Profile | Amazon
+{% endblock title %}
+{% block content %}
+<section style="min-height: 615px;" class="mb-4">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 my-4">
+                <h4 style="color:var(--pri);" id="cart-item-head">Profile</h4>
+                <hr style="border-color: white;">
+                {% include 'extends/msg.html' %}
+                {% if pf %}
+                {% for i in pf %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 mb-2">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="float-end"><img src="{% if i.image %}{{i.image.url}}{% else %}https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU={% endif %}"
+                                                style="height: 100px;width: 100px;border-radius: 50%;"></div>
+                                    </div>
+                                    <div class="col-md-4" style="height: 100px;display: flex;align-items: center;">
+                                        <h1 style="text-transform: capitalize;">{{request.user}}</h1>
+                                    </div>
+                                    <div class="col-md-6 mt-4">
+                                        <label for="">Update Profile:</label>
+                                        <div class="mt-2">{{form.image}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 my-3">
+                                    <label for="">First Name</label>
+                                    <input type="text" value="{{ i.fname }}" name="fname" class="form-control"
+                                        placeholder="Enter First Name" required>
+                                </div>
+                                <div class="col-md-6 my-3">
+                                    <label for="">Last Name</label>
+                                    <input type="text" value="{{ i.lname }}" name="lname" class="form-control"
+                                        placeholder="Enter Last Name" required>
+                                </div>
+                                <div class="col-md-12 mt-2 my-3">
+                                    <label for="">Date Of Birth</label>
+                                    <input type="date" value="{{ i.dob.year }}-{{month}}-{{day}}" name="dob" required
+                                        class="form-control" placeholder="Enter DOB" required>
+                                </div>
+                                <div class="col-md-12 mt-2 my-3">
+                                    <label for="">Email</label>
+                                    <input type="email" value="{{ i.email }}" name="email" class="form-control"
+                                        placeholder="Enter Email address" required>
+                                </div>
+                                <div class="col-md-12 mt-2 my-3">
+                                    <label for="">Phone</label>
+                                    <input type="tel" value="{{ i.phone }}" name="phone" required class="form-control"
+                                        placeholder="Enter Phone Number" required>
+                                </div>
+                                <div style="text-align: center;">
+                                    <input type="submit" class="btn btn-primary" value="Update">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="{% url 'new_profile' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-md-12 mb-2">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span class="float-end"><img
+                                                    src="https://media.istockphoto.com/id/1393750072/vector/flat-white-icon-man-for-web-design-silhouette-flat-illustration-vector-illustration-stock.jpg?s=612x612&w=0&k=20&c=s9hO4SpyvrDIfELozPpiB_WtzQV9KhoMUP9R9gVohoU="
+                                                    style="height: 100px;width: 100px;"></span>
+                                        </div>
+                                        <div class="col-md-4" style="height: 100px;display: flex;align-items: center;">
+                                            <h1 style="text-transform: capitalize;">{{request.user}}</h1>
+                                        </div>
+                                        <div class="col-md-6 mt-4">
+                                            <label for="">Update Profile:</label>
+                                            <div class="mt-2">{{form.image}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 my-3">
+                                        <label for="">First Name</label>
+                                        <input type="text" name="fname" class="form-control"
+                                            placeholder="Enter First Name" required>
+                                    </div>
+                                    <div class="col-md-6 my-3">
+                                        <label for="">Last Name</label>
+                                        <input type="text" name="lname" class="form-control"
+                                            placeholder="Enter Last Name" required>
+                                    </div>
+                                    <div class="col-md-12 mt-2 my-3">
+                                        <label for="">Date Of Birth</label>
+                                        <input type="date" name="dob" required class="form-control"
+                                            placeholder="Enter DOB" required>
+                                    </div>
+                                    <div class="col-md-12 mt-2 my-3">
+                                        <label for="">Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Enter Email address" required>
+                                    </div>
+                                    <div class="col-md-12 mt-2 my-3">
+                                        <label for="">Phone</label>
+                                        <input type="tel" name="phone" required class="form-control"
+                                            placeholder="Enter Phone Number" required>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <input type="submit" class="btn btn-primary" value="Update">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-4">
+                            <div class="container">
+                                <div class="card mt-2">
+                                    <div class="card-header">
+                                        <center>
+                                            <h4>Change Password</h4>
+                                        </center>
+                                    </div>
+                                    <div class="card-body">
+                                        <form method="POST" action="{% url 'update_password' %}">
+                                            {% csrf_token %}
+                                            <div class="col-md-12 mt-2 my-3">
+                                                <label for="">New Password</label>
+                                                {{psform.new_password1|add_class:"form-control"}}
+                                            </div>
+                                            <div class="col-md-12 my-3">
+                                                <label for="">New Password Confirm</label>
+                                                {{psform.new_password2 | add_class:"form-control"}}
+                                            </div>
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <input class="btn btn-primary btn-sm" type="submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <a href="{% url 'my_orders' %}"
+                                    style="text-align: center;text-decoration: none;color: var(--head);"
+                                    class="form-control my-4">My Orders</a>
+                                <a href="{% url 'fav_page' %}"
+                                    style="text-align: center;text-decoration: none;color: var(--head);"
+                                    class="form-control my-4">Favourite</a>    
+                                <a href="{% url 'logout' %}"
+                                    style="text-align: center;text-decoration: none;color: var(--head);"
+                                    onclick="return confirm('Are you sure to logout?')"
+                                    class="form-control my-4">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</section>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "extends/base.html" %}
+{% block title %}
+Checkout | Amazon
+{% endblock title %}
+{% block content %}
+    <div class="container" style="min-height: 639px;">
+        <form action="{% url 'buy_placeorder' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card-body" style="margin-top: 12px;">
+                        <h4 style="color:var(--pri);">Shipping Address</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6 mt-3">
+                                <label for="">First Name</label>
+                                <input type="text" value="{{ pf.fname }}" name="fname"  required class="form-control" placeholder="Enter First Name" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="">Last Name</label>
+                                <input type="text" value="{{ pf.lname }}" name="lname" required class="form-control" placeholder="Enter Last Name" required>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">Email</label>
+                                <input type="email" value="{{ pf.email }}" name="email" required class="form-control" placeholder="Enter Email address" required>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">Phone</label>
+                                <input type="tel" value="{{ pf.phone }}" name="phone" required class="form-control" placeholder="Enter Phone Number" required>
+                            </div>
+                            <div class="col-md-12 my-2">
+                                <label for="">Address</label>
+                                <textarea rows="3" name="address" required class="form-control" placeholder="Enter Your Address here"
+                                    required>{{ pf.address }}</textarea>
+                            </div>
+                            <div class="col-md-12 my-2">
+                                <label for="">Landmark</label>
+                                <input type="text" value="{{ pf.landmark }}" name="landmark" class="form-control" placeholder="Enter Landmark">
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">Country</label>
+                                <input type="text" value="{{ pf.country }}" name="country" required class="form-control" placeholder="Enter Country" required>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">State</label>
+                                <input type="text" value="{{ pf.state }}" name="state" required class="form-control" placeholder="Enter State" required>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">City</label>
+                                <input type="text" value="{{ pf.city }}" name="city" required class="form-control" placeholder="Enter city" required>
+                            </div>
+                            <div class="col-md-6 my-2">
+                                <label for="">Pin Code</label>
+                                <input type="tel" value="{{ pf.pincode }}" name="pincode" required class="form-control" placeholder="Enter Pin Code" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-3">
+                    <div class="card shadow" style="margin-top: 12px;">
+                        <div class="card-body">
+                            <h4 style="color:var(--pri);">Order Summary</h4>
+                            <hr>
+                            <div style="max-height: 465px;overflow-y:auto;">
+                                <table class="table table-striped" style="text-align: center;">
+                                    <thead>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th style="width: 70px;">Price</th>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            <div class="my-2"><img src="{{products.product_image.url}}"
+                                                style="height: 3.25rem;"></div>
+                                        </td>
+                                        <td>{{ products }}</td>
+                                        <td>{{ qty }}</td>
+                                        <td>{{ products.selling_price | stringformat:'d' }}</td>
+                                    </tr>
+                                    <td></td>
+                                <td></td>
+                                <td><b>Total</b></td>
+                                <td style="width: 85px;"><b>&#8377 {{ total }}</b></td>
+                                </table>
+                            </div>
+                            <input type="hidden" value="{{ total }}" name="total_amount">
+                            <input type="hidden" value="{{ products.selling_price | stringformat:'d' }}" name="price">
+                            <input type="hidden" value="{{ products.id }}" name="pid">
+                            <input type="hidden" value="{{ qty }}" name="qty">
+                            <input type="hidden" value="COD" name="payment_mode">
+                            <div style="position:relative;bottom: 0;text-align: center;">
+                                <button type="submit" class="btn btn-outline-success mt-3" style="text-align: center;">COD | PlaceOrder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock content %}

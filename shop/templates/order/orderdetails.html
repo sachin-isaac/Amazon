@@ -1,0 +1,111 @@
+{% extends "extends/base.html" %}
+{% block title %}
+Order Details | Amazon
+{% endblock title %}
+{% block content %}
+<div class="container" style="min-height: 623px;">
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-3">
+                <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
+                        href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
+                        href="{% url 'my_orders' %}">My Orders</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Order Details</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow" style="min-height: 545px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <center>
+                                            <h3 class="mb-4">{{order.product.name}}</h3>
+                                        </center>
+                                        <img src="{{order.product.product_image.url}}" class="card-img-top"
+                                            style="max-height: 28rem;object-fit: contain;padding: 10%;" alt="products">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 style="color:var(--head);text-align: center;">Shipping Details</h5>
+                                                <hr>
+                                                <b>
+                                                    <p>Payment Mode : {{order.payment.payment_mode}}</p>
+                                                    <p>Order Date &nbsp &nbsp &nbsp &nbsp: {{order.created_at.date}}</p>
+                                                    <p>Order Status &nbsp &nbsp : {{order.status}}</p>
+                                                    <p>Tracking ID &nbsp &nbsp &nbsp : {{order.tracking_no}}</p>
+                                                </b>
+                                            </div>
+                                            <div class="col-md-12 mt-2" style="height: 280px;">
+
+                                                <b>
+                                                    <h5 style="color:var(--head);text-align: center;">Delivery Addresss
+                                                    </h5>
+                                                    <hr>
+                                                    <p>{{order.shipping.fname}} {{order.shipping.lname}}</p>
+                                                    <p>{{order.shipping.address}}</p>
+                                                    <p>{{order.shipping.city}}</p>
+                                                    <p>{{order.shipping.state}}</p>
+                                                    <p>{{order.shipping.pincode}}</p>
+                                                </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="height: 500px;">
+                            <div class="container">
+                                <h5 style="color:var(--head);">Cancel Order</h5>
+                                <hr>
+                                {% if order.status == "Cancelled" %}
+                                        <div class="container" style="height: 26em;display: flex;align-items: center;justify-content: center">
+                                        <p style="opacity: 0.7;font-size: large;"><b>Your Order is Cancelled...</b></p>
+                                        </div>
+                                {% else %}
+                                <div style="max-height: 465px;overflow-y:auto;">
+                                    <form action="{% url 'cancel_order' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div style="min-height: 260px;">    
+                                        <p>Why you're cancelling this product</p>
+
+                                        <ul><input type="radio" id="Damaged" name="cancel" value="Damaged" required>
+                                            <label for="Damaged">Damaged</label>
+                                        </ul>
+                                        <ul><input type="radio" id="Expired" name="cancel" value="Expired">
+                                            <label for="Expired">Expired</label>
+                                        </ul>
+                                        <ul><input type="radio" id="time" name="cancel" value="Does'nt arrived at time">
+                                            <label for="time">Does'nt arrived at time</label>
+                                        </ul>
+                                        <ul><input type="radio" id="mistake" name="cancel" value="Order created by mistake">
+                                            <label for="mistake">Order created by mistake</label>
+                                        </ul>
+                                        <ul><input type="radio" id="toohigh" name="cancel" value="Item price too high">
+                                            <label for="toohigh">Item price too high</label>
+                                        </ul>
+                                    </div>
+                                        <label for="">Describe</label>
+                                        <textarea rows="3" name="Describe" class="form-control my-2"
+                                            placeholder="Describe the reason in words"></textarea>
+                                        <input type="hidden" value="{{order.id}}" name="order_id">   
+                                        <center><input class=" btn btn-danger btn-sm mt-2" type="submit" value="Cancel Order"></center>
+                                    </form>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
