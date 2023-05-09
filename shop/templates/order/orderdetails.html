@@ -62,13 +62,15 @@ Order Details | Amazon
                         </div>
                         <div class="col-md-5" style="height: 500px;">
                             <div class="container">
-                                <h5 style="color:var(--head);">Cancel Order</h5>
-                                <hr>
                                 {% if order.status == "Cancelled" %}
+                                <h5 style="color:var(--head);">Order Status</h5>
+                                <hr>
                                         <div class="container" style="height: 26em;display: flex;align-items: center;justify-content: center">
-                                        <p style="opacity: 0.7;font-size: large;"><b>Your Order is Cancelled...</b></p>
+                                            <img src="https://media.istockphoto.com/id/1227115202/photo/a-red-stamp-on-a-white-background-cancelled.jpg?b=1&s=170667a&w=0&k=20&c=RPueqU4VVfs98bOCqlCPifC7EcKze6CksprK4o_K3no=" width="350vh" alt="Your Order is Cancelled...">
                                         </div>
                                 {% else %}
+                                <h5 style="color:var(--head);">Cancel Order</h5>
+                                <hr>
                                 <div style="max-height: 465px;overflow-y:auto;">
                                     <form action="{% url 'cancel_order' %}" method="POST">
                                         {% csrf_token %}

@@ -122,3 +122,23 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class Myaddress(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4,editable = False)
+    address_head = models.CharField(max_length=20)
+    fname=models.CharField(max_length=20, null=False)
+    lname=models.CharField(max_length=20, null=False)
+    email=models.EmailField(null=False)
+    phone=models.BigIntegerField(null=False)
+    address=models.TextField(null=False)
+    landmark=models.CharField(max_length=40)
+    country=models.CharField(max_length=20, null=False)
+    state=models.CharField(max_length=20, null=False)
+    city=models.CharField(max_length=20, null=False)
+    pincode=models.IntegerField(null=False)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateField(auto_now=True)  
+
+    def __str__(self):
+        return '{} - {}'.format(self.fname,self.city)

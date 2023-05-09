@@ -29,30 +29,49 @@ My Orders | Amazon
                                 <th>Order Status</th>
                             </thead>
                             {% for item in orders reversed %}
-                            <tr>    
-                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}">
-                                    <div class="my-2"><img src="{{item.product.product_image.url}}"
-                                            style="height: 3.25rem;"></div></a>
+                            <tr>
+                                <td><a style="text-decoration: none;color: var(--head);"
+                                        href="{% url 'order_details' item.id %}">
+                                        <div class="my-2"><img src="{{item.product.product_image.url}}"
+                                                style="height: 3.25rem;"></div>
+                                    </a>
                                 </td>
-                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}"><div class="my-3">{{ item.product.name }}</a></div></td>
-                                <td><div class="my-3">{{ item.quantity }}</div></td>
-                                <td><div class="my-3">{{ item.product.selling_price | stringformat:'d'}}</div></td>
-                                <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}"><div class="my-3">{{item.status}}</div></a></td>
-                            </a>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                        {% else %}
-                        <div class="container"
-                            style="height: 26em;display: flex;align-items: center;justify-content: center">
-                            <p style="opacity: 0.7;font-size: large;"><b>Your Orders is Empty...</b></p>
-                        </div>
-                        {% endif %}
+                                <td><a style="text-decoration: none;color: var(--head);"
+                                        href="{% url 'order_details' item.id %}">
+                                        <div class="my-3">{{ item.product.name }}
+                                    </a>
                     </div>
+                    </td>
+                    <td>
+                        <div class="my-3">{{ item.quantity }}</div>
+                    </td>
+                    <td>
+                        <div class="my-3">{{ item.product.selling_price | stringformat:'d'}}</div>
+                    </td>
+                    <td><a style="text-decoration: none;color: var(--head);" href="{% url 'order_details' item.id %}">
+                            <div class="my-3">{{item.status}}</div>
+                        </a></td>
+                    </a>
+                    </tr>
+                    {% endfor %}
+                    </table>
+                    {% else %}
+                    {% load static %}
+                    <div class="container" style="display: flex;justify-content: center;margin-top: 5vh;">
+                        <img src="{% static 'images/order.jpg' %}" width="200" alt="No Order Found">
+                    </div>
+                    <h2 style="text-align: center;color: gray;font-size: 6vh;font-weight: 450;">No Order Found!</h2>
+                    <div style="text-align: center; margin-top: 2.7vh;">
+                        <a href="{% url 'collections' %}" class="btn btn-warning" style="color: rgb(91, 91, 91);">View Products</a>
+                    </div>
+                    {% endif %}
                 </div>
+
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 </div>
 {% endblock content %}

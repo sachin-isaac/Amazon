@@ -66,20 +66,20 @@ Checkout | Amazon
                 <div class="card shadow" style="margin-top: 12px;">
                     <div class="card-body">
                         <h4 style="color:var(--pri);">Order Summary</h4>
-                        <hr>
+                        <hr style="margin-bottom: 0;">
                         <div style="max-height: 465px;overflow-y:auto;">
                             <table class="table table-striped" style="text-align: center;">
-                                <thead>
+                                <thead style="background-color:white;position: sticky;top: 0;">
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Quantity</th>
-                                    <th style="width: 70px;">Price</th>
-                                    <th>Remove</th>
+                                    <th style="width: 70px;position: sticky;top: 0;">Price</th>
+                                    <th >Remove</th>
                                 </thead>
                                 {% for item in cartitems %}
                                 <tr>
                                     <td>
-                                        <div class="my-2"><img src="{{item.product.product_image.url}}"
+                                        <div class="my-1"><img src="{{item.product.product_image.url}}"
                                                 style="height: 3.25rem;"></div>
                                     </td>
                                     <td>{{ item.product.name }}</td>
@@ -88,14 +88,16 @@ Checkout | Amazon
                                     <td><a href="{% url 'remove_checkout' item.id %}" onclick="return confirm('Are you sure to delete?')" style="color: rgb(224, 0, 0);"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 {% endfor %}
+                                <tfoot style="background-color:white;position: sticky;bottom: 0px;">
                                 <td></td>
                                 <td></td>
-                                <td><b>Total</b></td>
+                                <td style="position: sticky;bottom: 0;"><b>Total</b></td>
                                 <td style="width: 85px;"><b>&#8377 {{total_price | stringformat:'d'}}</b></td>
                                 <td></td>
+                            </tfoot>
                             </table>
                         </div>
-                        <input type="hidden" value="COD" name="payment_mode">
+                        <input style="margin-top: 0;" type="hidden" value="COD" name="payment_mode">
                         <input type="hidden" value="{{total_price | stringformat:'d'}}" name="total_amount">
                         <div style="position:relative;bottom: 0;text-align: center;">
                             <button type="submit" class="btn btn-outline-success mt-3" style="text-align: center;">COD | PlaceOrder</button>

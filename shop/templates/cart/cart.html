@@ -12,7 +12,7 @@ Cart | Amazon
                 <hr style="border-color: white;">
             </div>
             {% if cart %}
-            <table style="text-align: center;" >
+            <table style="text-align: center; " >
                 <thead>
                     <th>Image</th>
                     <th>Product Name</th>
@@ -40,9 +40,12 @@ Cart | Amazon
                 </tr> 
             </table>
             {% else %}
-            <div class="container" style="height: 26em;display: flex;align-items: center;justify-content: center">
-                <p style="opacity: 0.7;font-size: large;"><b>Your Cart is Empty...</b></p>
+            <div class="container" style="height: 23em;display: flex;justify-content: center">
+                <img src="https://www.lytmeals.in/assets/web/img/emptycart.png" alt="Your Cart is Empty...">
             </div>
+            <div style="text-align: center; ">
+            <a href="{% url 'collections' %}" class="btn btn-warning" style="color: rgb(91, 91, 91);">View Products</a>
+        </div>
             {% endif %}
         </div>
     </div>
