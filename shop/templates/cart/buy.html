@@ -20,11 +20,7 @@ Checkout | Amazon
                                 <label for="">Last Name</label>
                                 <input type="text" value="{{ pf.lname }}" name="lname" required class="form-control" placeholder="Enter Last Name" required>
                             </div>
-                            <div class="col-md-6 my-2">
-                                <label for="">Email</label>
-                                <input type="email" value="{{ pf.email }}" name="email" required class="form-control" placeholder="Enter Email address" required>
-                            </div>
-                            <div class="col-md-6 my-2">
+                            <div class="col-md-12 my-2">
                                 <label for="">Phone</label>
                                 <input type="tel" value="{{ pf.phone }}" name="phone" required class="form-control" placeholder="Enter Phone Number" required>
                             </div>
@@ -90,7 +86,8 @@ Checkout | Amazon
                             <input type="hidden" value="{{ qty }}" name="qty">
                             <input type="hidden" value="COD" name="payment_mode">
                             <div style="position:relative;bottom: 0;text-align: center;">
-                                <button type="submit" class="btn btn-outline-success mt-3" style="text-align: center;">COD | PlaceOrder</button>
+                                <button type="submit" class="btn btn-outline-success mt-2" style="text-align: center;">COD | PlaceOrder</button>
+                                <!--<a href="#" class="btn btn-outline-warning mt-2" style="width: 18vh;">Cancel</a>-->
                             </div>
                         </div>
                     </div>

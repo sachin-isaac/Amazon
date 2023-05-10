@@ -10,7 +10,7 @@ Profile | Amazon
         <div class="row ">
             <div class="col-12 my-4">
                 <h4 style="color:var(--pri);" id="cart-item-head">Profile</h4>
-                <hr style="border-color: white;">
+                <hr>
                 {% include 'extends/msg.html' %}
                 {% if pf %}
                 {% for i in pf %}
@@ -145,13 +145,12 @@ Profile | Amazon
                                         </form>
                                     </div>
                                 </div>
-
+                                <a href="{% url 'address' %}"
+                                    style="text-align: center;text-decoration: none;color: var(--head);"
+                                    class="form-control my-4">Addresses</a> 
                                 <a href="{% url 'my_orders' %}"
                                     style="text-align: center;text-decoration: none;color: var(--head);"
-                                    class="form-control my-4">My Orders</a>
-                                <a href="{% url 'fav_page' %}"
-                                    style="text-align: center;text-decoration: none;color: var(--head);"
-                                    class="form-control my-4">Favourite</a>    
+                                    class="form-control my-4">Orders</a>
                                 <a href="{% url 'logout' %}"
                                     style="text-align: center;text-decoration: none;color: var(--head);"
                                     onclick="return confirm('Are you sure to logout?')"

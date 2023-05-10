@@ -1,5 +1,5 @@
 from django.urls import path
-from .import orders,user,profile,collections,cart,fav,checkout
+from .import orders,user,profile,collections,cart,fav,checkout,address
 
 urlpatterns=[
     path("",user.home,name="home"),
@@ -12,6 +12,10 @@ urlpatterns=[
     path("new_profile",profile.new_profile,name="new_profile"),
     path("update_profile",profile.update_profile,name="update_profile"),
     path("update_password",profile.update_password,name="update_password"),
+    
+    path("address",address.address,name="address"),
+    path("new_address",address.new_address,name="new_address"),
+    path("add_address",address.add_address,name="add_address"),
 
     path("product_list",collections.product_list,name="product_list"),
     path('search_product',collections.search_product,name="search_product"),

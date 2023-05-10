@@ -46,7 +46,6 @@ def placeorder(request):
             shipping.user = request.user
             shipping.fname = request.POST.get('fname')
             shipping.lname = request.POST.get('lname')
-            shipping.email = request.POST.get('email')
             shipping.phone = request.POST.get('phone')
             shipping.address = request.POST.get('address')
             shipping.landmark=request.POST.get('landmark')
@@ -112,7 +111,6 @@ def buy_placeorder(request):
             shipping.user = request.user
             shipping.fname = request.POST.get('fname')
             shipping.lname = request.POST.get('lname')
-            shipping.email = request.POST.get('email')
             shipping.phone = request.POST.get('phone')
             shipping.address = request.POST.get('address')
             shipping.landmark=request.POST.get('landmark')
