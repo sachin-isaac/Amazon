@@ -19,8 +19,9 @@ def checkout(request):
             total_price += item.total_cost
 
         pf = Shipping.objects.filter(user=request.user).first()
+        Address=Myaddress.objects.filter(user=request.user)
     
-        return render(request,'cart/checkout.html',{"cartitems":cartitems,"total_price":total_price,"pf":pf})
+        return render(request,'cart/checkout.html',{"cartitems":cartitems,"total_price":total_price,"pf":pf,"Address":Address})
     except Exception as e:
         print(e)
         return redirect('home')
@@ -41,18 +42,20 @@ def placeorder(request):
             payment.amount=request.POST.get('total_amount')
             payment.payment_mode=request.POST.get('payment_mode')
             payment.save()
-
+ 
+            aid=request.POST.get("shipping")
+            a=Myaddress.objects.get(id=aid)
             shipping=Shipping()
             shipping.user = request.user
-            shipping.fname = request.POST.get('fname')
-            shipping.lname = request.POST.get('lname')
-            shipping.phone = request.POST.get('phone')
-            shipping.address = request.POST.get('address')
-            shipping.landmark=request.POST.get('landmark')
-            shipping.country = request.POST.get('country')
-            shipping.state = request.POST.get('state')
-            shipping.city = request.POST.get('city')
-            shipping.pincode = request.POST.get('pincode')
+            shipping.fname = a.fname
+            shipping.lname =a.lname
+            shipping.phone = a.phone
+            shipping.address = a.address
+            shipping.landmark= a.landmark
+            shipping.country = a.country
+            shipping.state = a.state
+            shipping.city = a.city
+            shipping.pincode = a.pincode
             shipping.save()
             
             neworderitems = Cart.objects.filter(user=request.user)
@@ -90,7 +93,8 @@ def buy(request,cname,pname):
                         if products.quantity>=int(qty):
                             pf = Shipping.objects.filter(user=request.user).first()
                             total=int(products.selling_price)*int(qty)
-                            return render(request,'cart/buy.html',{"products":products,"qty":qty,"total":total,"pf":pf})
+                            Address=Myaddress.objects.filter(user=request.user)
+                            return render(request,'cart/buy.html',{"products":products,"qty":qty,"total":total,"pf":pf,"Address":Address})
                         else:
                             return JsonResponse({'status':'Product Stock Not available'},status=200) 
         else:
@@ -107,17 +111,19 @@ def buy_placeorder(request):
             payment.payment_mode=request.POST.get('payment_mode')
             payment.save()
 
+            aid=request.POST.get("shipping")
+            a=Myaddress.objects.get(id=aid)
             shipping=Shipping()
             shipping.user = request.user
-            shipping.fname = request.POST.get('fname')
-            shipping.lname = request.POST.get('lname')
-            shipping.phone = request.POST.get('phone')
-            shipping.address = request.POST.get('address')
-            shipping.landmark=request.POST.get('landmark')
-            shipping.country = request.POST.get('country')
-            shipping.state = request.POST.get('state')
-            shipping.city = request.POST.get('city')
-            shipping.pincode = request.POST.get('pincode')
+            shipping.fname = a.fname
+            shipping.lname =a.lname
+            shipping.phone = a.phone
+            shipping.address = a.address
+            shipping.landmark= a.landmark
+            shipping.country = a.country
+            shipping.state = a.state
+            shipping.city = a.city
+            shipping.pincode = a.pincode
             shipping.save()
 
             pid=request.POST.get('pid')

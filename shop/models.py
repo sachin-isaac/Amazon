@@ -139,4 +139,4 @@ class Myaddress(models.Model):
     updated_at=models.DateField(auto_now=True)  
 
     def __str__(self):
-        return '{} - {}'.format(self.fname,self.city)
+        return '{} - {}'.format(self.fname,self.address_head)

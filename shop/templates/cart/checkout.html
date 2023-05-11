@@ -11,7 +11,42 @@ Checkout | Amazon
                 <div class="card-body" style="margin-top: 12px;">
                     <h4 style="color:var(--pri);">Shipping Address</h4>
                     <hr>
-                    <div class="row">
+                    <h5>Choose the address for shipping</h5>
+                    <div style="max-height: 100px;display: flex;margin-top: 2%;">
+
+                        {% for a in Address %}
+                        <ul><input type="radio" id="{{a.address_head}}" name="shipping" value="{{a.id}}" required>
+                            <label for="{{a.address_head}}">
+                                <h6>{{a.address_head}}</h6>
+                            </label>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                    <div style="max-height: 55vh;display: flex;">
+
+                        {% for a in Address %}
+                        <div style="width: 280px;margin-right: 10px;">
+                            <div class="card">
+                                <div class="card-header">
+                                    {{a.address_head}}
+                                </div>
+                                <div class="card-body">
+                                    <div class="my-2">{{a.fname}} {{a.lname}}</div>
+                                    <div class="my-2">{{a.address}}</div>
+                                    <div class="my-2">{{a.landmark}}</div>
+                                    <div class="my-2">{{a.city}}</div>
+                                    <div class="my-2">{{a.state}}</div>
+                                    <div class="my-2">{{a.country}}</div>
+                                    <div class="my-2">{{a.pincode}}</div>
+                                    <div class="my-2">{{a.phone}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <!--<div class="row">
                         <div class="col-md-6 mt-3">
                             <label for="">First Name</label>
                             <input type="text" value="{{ pf.fname }}" name="fname" class="form-control" placeholder="Enter First Name" required>
@@ -55,7 +90,7 @@ Checkout | Amazon
                             <label for="">Pin Code</label>
                             <input type="tel" value="{{ pf.pincode }}" name="pincode" required class="form-control" placeholder="Enter Pin Code" required>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col-md-5 mb-3">
@@ -70,7 +105,7 @@ Checkout | Amazon
                                     <th>Name</th>
                                     <th>Quantity</th>
                                     <th style="width: 70px;position: sticky;top: 0;">Price</th>
-                                    <th >Remove</th>
+                                    <th>Remove</th>
                                 </thead>
                                 {% for item in cartitems %}
                                 <tr>
@@ -81,22 +116,25 @@ Checkout | Amazon
                                     <td>{{ item.product.name }}</td>
                                     <td>{{ item.product_qty }}</td>
                                     <td>{{ item.total_cost | stringformat:'d'}}</td>
-                                    <td><a href="{% url 'remove_checkout' item.id %}" onclick="return confirm('Are you sure to delete?')" style="color: rgb(224, 0, 0);"><i class="fa fa-trash"></i></a></td>
+                                    <td><a href="{% url 'remove_checkout' item.id %}"
+                                            onclick="return confirm('Are you sure to delete?')"
+                                            style="color: rgb(224, 0, 0);"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 {% endfor %}
                                 <tfoot style="background-color:white;position: sticky;bottom: 0px;">
-                                <td></td>
-                                <td></td>
-                                <td style="position: sticky;bottom: 0;"><b>Total</b></td>
-                                <td style="width: 85px;"><b>&#8377 {{total_price | stringformat:'d'}}</b></td>
-                                <td></td>
-                            </tfoot>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="position: sticky;bottom: 0;"><b>Total</b></td>
+                                    <td style="width: 85px;"><b>&#8377 {{total_price | stringformat:'d'}}</b></td>
+                                    <td></td>
+                                </tfoot>
                             </table>
                         </div>
                         <input style="margin-top: 0;" type="hidden" value="COD" name="payment_mode">
                         <input type="hidden" value="{{total_price | stringformat:'d'}}" name="total_amount">
                         <div style="position:relative;bottom: 0;text-align: center;">
-                            <button type="submit" class="btn btn-outline-success mt-2" style="text-align: center;">COD | PlaceOrder</button>
+                            <button type="submit" class="btn btn-outline-success mt-2" style="text-align: center;">COD |
+                                PlaceOrder</button>
                             <!--<a href="{% url 'cart' %}" class="btn btn-outline-warning mt-2" style="width: 18vh;">Cancel</a>-->
                         </div>
                     </div>

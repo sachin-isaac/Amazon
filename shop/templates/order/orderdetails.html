@@ -65,39 +65,45 @@ Order Details | Amazon
                                 {% if order.status == "Cancelled" %}
                                 <h5 style="color:var(--head);">Order Status</h5>
                                 <hr>
-                                        <div class="container" style="height: 26em;display: flex;align-items: center;justify-content: center">
-                                            <img src="https://media.istockphoto.com/id/1227115202/photo/a-red-stamp-on-a-white-background-cancelled.jpg?b=1&s=170667a&w=0&k=20&c=RPueqU4VVfs98bOCqlCPifC7EcKze6CksprK4o_K3no=" width="350vh" alt="Your Order is Cancelled...">
-                                        </div>
+                                <div class="container"
+                                    style="height: 26em;display: flex;align-items: center;justify-content: center">
+                                    <img src="https://media.istockphoto.com/id/1227115202/photo/a-red-stamp-on-a-white-background-cancelled.jpg?b=1&s=170667a&w=0&k=20&c=RPueqU4VVfs98bOCqlCPifC7EcKze6CksprK4o_K3no="
+                                        width="350vh" alt="Your Order is Cancelled...">
+                                </div>
                                 {% else %}
                                 <h5 style="color:var(--head);">Cancel Order</h5>
                                 <hr>
                                 <div style="max-height: 465px;overflow-y:auto;">
                                     <form action="{% url 'cancel_order' %}" method="POST">
                                         {% csrf_token %}
-                                        <div style="min-height: 260px;">    
-                                        <p>Why you're cancelling this product</p>
+                                        <div style="min-height: 260px;">
+                                            <p>Why you're cancelling this product</p>
 
-                                        <ul><input type="radio" id="Damaged" name="cancel" value="Damaged" required>
-                                            <label for="Damaged">Damaged</label>
-                                        </ul>
-                                        <ul><input type="radio" id="Expired" name="cancel" value="Expired">
-                                            <label for="Expired">Expired</label>
-                                        </ul>
-                                        <ul><input type="radio" id="time" name="cancel" value="Does'nt arrived at time">
-                                            <label for="time">Does'nt arrived at time</label>
-                                        </ul>
-                                        <ul><input type="radio" id="mistake" name="cancel" value="Order created by mistake">
-                                            <label for="mistake">Order created by mistake</label>
-                                        </ul>
-                                        <ul><input type="radio" id="toohigh" name="cancel" value="Item price too high">
-                                            <label for="toohigh">Item price too high</label>
-                                        </ul>
-                                    </div>
+                                            <ul><input type="radio" id="Damaged" name="cancel" value="Damaged" required>
+                                                <label for="Damaged">Damaged</label>
+                                            </ul>
+                                            <ul><input type="radio" id="Expired" name="cancel" value="Expired">
+                                                <label for="Expired">Expired</label>
+                                            </ul>
+                                            <ul><input type="radio" id="time" name="cancel"
+                                                    value="Does'nt arrived at time">
+                                                <label for="time">Does'nt arrived at time</label>
+                                            </ul>
+                                            <ul><input type="radio" id="mistake" name="cancel"
+                                                    value="Order created by mistake">
+                                                <label for="mistake">Order created by mistake</label>
+                                            </ul>
+                                            <ul><input type="radio" id="toohigh" name="cancel"
+                                                    value="Item price too high">
+                                                <label for="toohigh">Item price too high</label>
+                                            </ul>
+                                        </div>
                                         <label for="">Describe</label>
                                         <textarea rows="3" name="Describe" class="form-control my-2"
                                             placeholder="Describe the reason in words"></textarea>
-                                        <input type="hidden" value="{{order.id}}" name="order_id">   
-                                        <center><input class=" btn btn-danger btn-sm mt-2" type="submit" value="Cancel Order"></center>
+                                        <input type="hidden" value="{{order.id}}" name="order_id">
+                                        <center><input class=" btn btn-danger btn-sm mt-2" type="submit"
+                                                value="Cancel Order"></center>
                                     </form>
                                 </div>
                                 {% endif %}
