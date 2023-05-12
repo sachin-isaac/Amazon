@@ -1,0 +1,82 @@
+{% extends "extends/base.html" %}
+{% include 'extends/navbar.html' %}
+{% block title %}
+Address Update | Amazon
+{% endblock title %}
+{% block content %}
+<div class="container" style="min-height: 639px;">
+    <form action="{% url 'update_address' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12 mt-4">
+                <h4 style="color:var(--pri);" id="cart-item-head">Update {{a.address_head}} Address <div class="float-end" style="font-size: 80%;margin-top: 8px;"><a href="{% url 'address' %}" style="color: var(--head);">Back <i class="fa fa-arrow-left" style="font-size: 80%;" aria-hidden="true"></i></a></div></h4> 
+                <hr>
+                <div class="row">
+                    <div class="col-md-5" style="display: flex;justify-content: center;align-items: center;margin-bottom: 1rem;"> 
+                        <div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/4820/4820122.png"
+                                style="height: 55vh;width:100%;" alt="">
+                        </div>      
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <label for="">Title/Shortcut Name</label>
+                                <input type="text" value="{{a.address_head}}" name="address_head" class="form-control"
+                                    placeholder="Enter Title Name" required>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">First Name</label>
+                                <input type="text" value="{{a.fname}}" name="fname" class="form-control" placeholder="Enter First Name"
+                                    required>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">Last Name</label>
+                                <input type="text" value="{{a.lname}}" name="lname" class="form-control" placeholder="Enter Last Name"
+                                    required>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 1.8%;">
+                                <label for="">Address</label>
+                                <textarea rows="3" name="address" class="form-control"
+                                    placeholder="Enter Your Address here" required>{{a.address}}</textarea>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">City</label>
+                                <input id="city" type="text" value="{{a.city}}" name="city" class="form-control" placeholder="Enter Your city" required>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">State</label>
+                                <input id="state" type="text" value="{{a.state}}" name="state" class="form-control" placeholder="Enter Your State" required>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">Country</label>
+                                <input id="country" type="text" value="{{a.country}}" name="country" class="form-control" placeholder="Enter Your Country" required>
+                            </div> 
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">Pin Code</label>
+                                <input type="tel" value="{{a.pincode}}" name="pincode" required class="form-control"
+                                    placeholder="Enter Pin Code" required>
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">Landmark</label>
+                                <input type="text" value="{{a.landmark}}" name="landmark" class="form-control" placeholder="Enter Landmark">
+                            </div>
+                            <div class="col-md-6" style="margin-top: 1.8%;">
+                                <label for="">Phone</label>
+                                <input type="tel" value="{{a.phone}}" name="phone" class="form-control" placeholder="Enter Phone Number"
+                                    required>
+                            </div>
+                            <input type="hidden"  value="{{a.id}}" name="aid">
+                            <div style="text-align: center;">
+                                <input type="submit" class="btn btn-primary mx-2" style="margin: 1.8%;" value="Update Address">
+                                <!--<a href="{% url 'address' %}" class="btn btn-warning mt-3 mx-2" style="width: 14vh;">Cancel</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
