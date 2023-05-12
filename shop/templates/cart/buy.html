@@ -13,7 +13,6 @@ Checkout | Amazon
                         <hr>
                         <h5>Choose the address for shipping</h5>
                     <div style="max-height: 100px;display: flex;margin-top: 2%;">
-
                         {% for a in Address %}
                         <ul><input type="radio" id="{{a.address_head}}" name="shipping" value="{{a.id}}" required>
                             <label for="{{a.address_head}}">
@@ -23,7 +22,6 @@ Checkout | Amazon
                         {% endfor %}
                     </div>
                     <div style="max-height: 55vh;display: flex;">
-
                         {% for a in Address %}
                         <div style="width: 280px;margin-right: 10px;">
                             <div class="card">
@@ -43,7 +41,6 @@ Checkout | Amazon
                             </div>
                         </div>
                         {% endfor %}
-
                     </div>
                         <!--<div class="row">
                             <div class="col-md-6 mt-3">
@@ -129,4 +126,4 @@ Checkout | Amazon
             </div>
         </form>
     </div>
-    {% endblock content %}
+{% endblock content %}

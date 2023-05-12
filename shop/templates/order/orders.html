@@ -10,6 +10,8 @@ My Orders | Amazon
             <ol class="breadcrumb my-3">
                 <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
                         href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
+                            href="{% url 'profile' %}">Profile</a></li>
                 <li class="breadcrumb-item active" aria-current="page">My Orders</li>
             </ol>
         </nav>
@@ -28,7 +30,7 @@ My Orders | Amazon
                                 <th style="width: 70px;">Price</th>
                                 <th>Order Status</th>
                             </thead>
-                            {% for item in orders reversed %}
+                            {% for item in orders %}
                             <tr>
                                 <td><a style="text-decoration: none;color: var(--head);"
                                         href="{% url 'order_details' item.id %}">

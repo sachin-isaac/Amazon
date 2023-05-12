@@ -96,7 +96,9 @@ def buy(request,cname,pname):
                             Address=Myaddress.objects.filter(user=request.user)
                             return render(request,'cart/buy.html',{"products":products,"qty":qty,"total":total,"pf":pf,"Address":Address})
                         else:
-                            return JsonResponse({'status':'Product Stock Not available'},status=200) 
+                            messages.success(request,"Product Stock Not available")
+                            return render(request,'products/details.html',{"products":products,})
+                            
         else:
             return JsonResponse({'status':'Login to Buy Now'},status=200)            
     except Exception as e:
@@ -148,7 +150,8 @@ def buy_placeorder(request):
                     orderproduct.save()
                     messages.success(request,"Your Order has been placed sucessfully") 
                 else:
-                    return JsonResponse({'status':'Product Stock Not available'},status=200)   
+                    messages.success(request,"Product Stock Not available")
+                    return render(request,'products/details.html',{"products":orderproduct,})   
         return redirect('home')
     except Exception as e:
         print(e)

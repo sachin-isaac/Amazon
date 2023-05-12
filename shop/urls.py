@@ -18,6 +18,7 @@ urlpatterns=[
     path("add_address",address.add_address,name="add_address"),
     path("edit_address/<str:aid>",address.edit_address,name="edit_address"),
     path("update_address",address.update_address,name="update_address"),
+    path("delete_address<str:aid>",address.delete_address,name="delete_address"),
 
     path("product_list",collections.product_list,name="product_list"),
     path('search_product',collections.search_product,name="search_product"),

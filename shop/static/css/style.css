@@ -23,3 +23,12 @@
     overflow: hidden;
     padding-top: 10px;
   }
+
+a{
+    text-decoration: none;
+    color: var(--head);
+}
+
+#x:hover{
+color: rgb(216, 0, 0);
+}

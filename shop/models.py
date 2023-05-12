@@ -106,7 +106,7 @@ class Orders(models.Model):
     updated_at=models.DateField(auto_now=True) 
 
     def __str__(self):
-        return '{} - {}'.format(self.quantity,self.product.name)  
+        return '{} - {}'.format(self.user,self.product.name)  
      
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -140,3 +140,15 @@ class Myaddress(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.fname,self.address_head)
+    
+class Orderscancelled(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE) 
+    order=models.ForeignKey(Orders,on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4,editable = False)
+    reason =models.CharField(max_length=50, null=False)
+    describe=models.TextField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '{} - {} - {}'.format(self.user,self.order.product,self.reason)
