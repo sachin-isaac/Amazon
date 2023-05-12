@@ -25,6 +25,7 @@ def profile(request):
     except Exception as e:
         print(e) 
         return redirect('home')    
+   
     
 def new_profile(request):
     try:    
@@ -50,6 +51,7 @@ def new_profile(request):
         print(e) 
         return redirect('home')    
     
+
 def update_profile(request):
     try:    
         if request.method == "POST":
@@ -74,7 +76,8 @@ def update_profile(request):
     except Exception as e:
         print(e) 
         return redirect('home') 
-    
+
+
 def update_password(request):
     try:
         if request.method == 'POST':

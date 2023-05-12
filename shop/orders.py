@@ -11,6 +11,7 @@ def my_orders(request):
         print(e)   
         return redirect('home') 
     
+
 def order_details(request,oid):
     try:
         order= Orders.objects.filter(id=oid).filter(user=request.user).first()
@@ -19,9 +20,11 @@ def order_details(request,oid):
         else:
             return redirect('my_orders')
     except Exception as e:
+        
         print(e)   
         return redirect('home') 
     
+
 def cancel_order(request):
     try:
         oid=request.POST.get("order_id")

@@ -13,6 +13,7 @@ def product_list(request):
     except Exception as e:
         print(e)
 
+
 def search_product(request):
     if request.method == 'POST':
         searchedterm = request.POST.get('productsearch')
@@ -29,6 +30,7 @@ def search_product(request):
     else:
         return redirect(request.META.get('HTTP_REFERER'))        
 
+
 def collections(request):
     try:
         category=Category.objects.filter(status=0)
@@ -37,6 +39,7 @@ def collections(request):
         print(e) 
         return redirect('home')
     
+
 def view(request,name):
     try:
         if(Category.objects.filter(name=name,status=0)):
@@ -60,6 +63,7 @@ def view(request,name):
     except Exception as e:
         print(e)   
         return redirect('home') 
+
 
 def details(request,cname,pname):
     try:

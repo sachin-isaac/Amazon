@@ -33,6 +33,7 @@ def addto_cart(request):
         print(e) 
         return redirect('home')   
     
+
 def cart_page(request):
     try:
         if request.user.is_authenticated:
@@ -46,6 +47,7 @@ def cart_page(request):
     except Exception as e:
         print(e)   
         return redirect('home') 
+    
     
 def remove_cart(request,cid):
     try:

@@ -26,6 +26,7 @@ def checkout(request):
         print(e)
         return redirect('home')
 
+
 def remove_checkout(request,cid):
     try:
         citem=Cart.objects.get(id=cid)
@@ -34,6 +35,7 @@ def remove_checkout(request,cid):
     except Exception as e:
         print(e) 
         return redirect('home')       
+
 
 def placeorder(request):
     try:
@@ -74,7 +76,6 @@ def placeorder(request):
                 orderproduct.quantity=orderproduct.quantity-item.product_qty
                 orderproduct.save()
   
-
             Cart.objects.filter(user=request.user).delete()   
 
             messages.success(request,"Your Order has been placed sucessfully")     
@@ -83,6 +84,7 @@ def placeorder(request):
         print(e)
         return redirect('home')
     
+
 def buy(request,cname,pname):
     try:
         if request.user.is_authenticated:    
@@ -97,14 +99,18 @@ def buy(request,cname,pname):
                             return render(request,'cart/buy.html',{"products":products,"qty":qty,"total":total,"pf":pf,"Address":Address})
                         else:
                             messages.success(request,"Product Stock Not available")
-                            return render(request,'products/details.html',{"products":products,})
+                            return redirect(request.META.get('HTTP_REFERER'))
+                            #return render(request,'products/details.html',{"products":products,})
                             
         else:
-            return JsonResponse({'status':'Login to Buy Now'},status=200)            
+            messages.info(request,"Login to Buy Now")
+            return redirect(request.META.get('HTTP_REFERER'))
+            # return JsonResponse({'status':'Login to Buy Now'},status=200)            
     except Exception as e:
         print(e)
         return redirect('home')
         
+
 def buy_placeorder(request):
     try:
         if request.method == 'POST':
@@ -151,7 +157,8 @@ def buy_placeorder(request):
                     messages.success(request,"Your Order has been placed sucessfully") 
                 else:
                     messages.success(request,"Product Stock Not available")
-                    return render(request,'products/details.html',{"products":orderproduct,})   
+                    return redirect(request.META.get('HTTP_REFERER'))
+                    #return render(request,'products/details.html',{"products":orderproduct,})   
         return redirect('home')
     except Exception as e:
         print(e)

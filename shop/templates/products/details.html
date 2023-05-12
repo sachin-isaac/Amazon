@@ -11,6 +11,7 @@ Amazon
             <div class="col-12 my-4">
                 <h4 class="mb-3">{{products}} Details</h4>
                 <hr style="border-color: white;">
+                {% include 'extends/msg.html' %}
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a style="text-decoration: none;color:var(--head);"
@@ -23,7 +24,7 @@ Amazon
                         <li class="breadcrumb-item active" aria-current="page">{{products}}</li>
                     </ol>
                 </nav>
-                {% include 'extends/msg.html' %}
+                
             </div>
             <div class="col-4 my-3 ">
                 {% if products.trending %}

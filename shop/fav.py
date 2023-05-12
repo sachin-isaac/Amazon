@@ -27,6 +27,7 @@ def fav(request):
         print(e) 
         return redirect('home')   
 
+
 def fav_page(request):
     try:
         if request.user.is_authenticated:
@@ -37,6 +38,7 @@ def fav_page(request):
     except Exception as e:
         print(e)    
         return redirect('home')
+
 
 def remove_fav(request,fid):
     try:

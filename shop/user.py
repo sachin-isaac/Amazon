@@ -11,6 +11,7 @@ def home(request):
     except Exception as e:
         print(e)
 
+
 def login_page(request):
     try:
         if request.user.is_authenticated:
@@ -32,6 +33,7 @@ def login_page(request):
         print(e) 
         return redirect('home')
 
+
 def logout_page(request):
     try:
         if request.user.is_authenticated:
@@ -41,6 +43,7 @@ def logout_page(request):
     except Exception as e:
         print(e)
         return redirect('home')
+
 
 def register(request): 
     try:
