@@ -1,0 +1,78 @@
+{% extends "extends/base.html" %}
+{% include 'extends/navbar.html' %}
+{% load widget_tweaks %}
+{% block title %}
+Address | Amazon
+{% endblock title %}
+
+{% block content %}
+
+<div class="container" style="min-height: 639px;">
+    <div class="row ">
+        <div class="col-12 my-4">
+            <h4 style="color:var(--pri);" id="cart-item-head">Addresses <div class="float-end" style="font-size: 80%;margin-top: 8px;"><a href="{% url 'profile' %}" style="color: var(--head);">Back <i class="fa fa-arrow-left" style="font-size: 80%;" aria-hidden="true"></i></a></div></h4>
+            <hr>
+            {% include 'extends/msg.html' %}
+        </div>
+        {% if address %}
+        {% for i in address %}
+        
+        <div class="col-md-4 mb-4">
+            
+            <div class="card">
+                <div class="card-header">
+                    <div  style="display: flex; align-items: center;justify-content: center;">
+                        <a href="{% url 'edit_address' i.id %}" style="color: var(--head);">
+                        <h3 style="justify-content: center;">{{i.address_head}}</h3></a>
+                        <h3 style="position: absolute; right: 4%;"><a href="{% url 'delete_address' i.id %}" id="x"
+                            onclick="return confirm('Are you sure to delete?')" >x</a></h3>
+                    </div>
+                </div>
+                <a href="{% url 'edit_address' i.id %}" style="color: var(--head);">
+                <div class="card-body">
+                    <h5>
+                        <div class="row ">
+                            <div class="col-md-4 my-2">Name</div>
+                            <div class="col-md-8 my-2">: {{i.fname}} {{i.lname}}</div>
+                            <div class="col-md-4 my-2">Address</div>
+                            <div class="col-md-8 my-2">: {{i.address}}</div>
+                            <div class="col-md-4 my-2">Landmark</div>
+                            <div class="col-md-8 my-2">: {{i.landmark}}</div>
+                            <div class="col-md-4 my-2">City</div>
+                            <div class="col-md-8 my-2">: {{i.city}}</div>
+                            <div class="col-md-4 my-2">State</div>
+                            <div class="col-md-8 my-2">: {{i.state}}</div>
+                            <div class="col-md-4 my-2">Country</div>
+                            <div class="col-md-8 my-2">: {{i.country}}</div>
+                            <div class="col-md-4 my-2">Pincode</div>
+                            <div class="col-md-8 my-2">: {{i.pincode}}</div>
+                            <div class="col-md-4 my-2">Phone No</div>
+                            <div class="col-md-8 my-2">: {{i.phone}}</div>
+                        </div>
+                    </h5>
+                
+                </div>
+            </a>
+            </div>
+        
+        </div>
+    
+        {% endfor %}
+        <div class="col-md-12 mb-4" style="text-align: center;">
+            <a href="{% url 'new_address' %}" class="btn btn-primary btn-sm">Add New Address</a>
+        </div>
+        {% else %}
+        {% load static %}
+        <div style="justify-content: center;display: flex; align-items: center;margin-top: 2%;">
+            <img src="{% static 'images/no-address.jpg' %}" style="width: 275px;height: 100%;" alt="No Address Found">
+        </div>
+        <div class="col-md-12 mt-3" style="text-align: center;">
+            <a href="{% url 'new_address' %}" class="btn" style="background-color: rgb(139, 62, 255);color: white;">Add
+                New Address</a>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock content %}

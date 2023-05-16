@@ -104,8 +104,10 @@ def buy(request,cname,pname):
                             
         else:
             messages.info(request,"Login to Buy Now")
-            return redirect(request.META.get('HTTP_REFERER'))
-            # return JsonResponse({'status':'Login to Buy Now'},status=200)            
+            return redirect("login")
+            #return redirect(request.META.get('HTTP_REFERER'))
+            # return JsonResponse({'status':'Login to Buy Now'},status=200)  
+                      
     except Exception as e:
         print(e)
         return redirect('home')

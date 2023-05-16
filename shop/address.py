@@ -85,6 +85,7 @@ def delete_address(request,aid):
     try:
         addrezz=Myaddress.objects.get(id=aid)
         addrezz.delete()
+        messages.success(request,"Address deleted successfully")
         return redirect('address')
     except Exception as e:
         print(e) 

@@ -26,7 +26,7 @@ def addto_cart(request):
                 return JsonResponse({"status":"Product Added to cart"},status=200)
             else:
                 return JsonResponse({'status':'Login to Add Cart'},status=200)
-
+                
         else:
             return JsonResponse({'status':'Invalid Access'}, status=200)
     except Exception as e:
@@ -48,7 +48,7 @@ def cart_page(request):
         print(e)   
         return redirect('home') 
     
-    
+
 def remove_cart(request,cid):
     try:
         citem=Cart.objects.get(id=cid)
