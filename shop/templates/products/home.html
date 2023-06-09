@@ -18,7 +18,7 @@ Amazon
                 <hr >
             </div>
             {% for item in products %}
-            <div class="card mx-3 my-3" style="width: 18rem;">
+            <div class="card mx-3 my-3" style="width: 18rem;padding-top: 0.5rem;" id="image">
                 <a href="{% url 'details' item.category.name item.name %}" style="text-decoration: none;">
                 <img src="{{item.product_image.url}}"  style="height: 15rem;width: 16.5rem;object-fit: contain;" alt="Categories">
                     <div class="card-body">
@@ -35,4 +35,8 @@ Amazon
     </div>
 </div>
 </div>
+<style>
+    #image:hover img{
+      transform: scale(1.05);}
+</style>
 {% endblock content %}

@@ -22,7 +22,7 @@ Amazon
             </div>
 
             {% for item in products %}
-            <div class="card" style="max-width: 18rem;margin: 1rem 1.3rem;">
+            <div class="card" style="max-width: 18rem;padding-top: 0.5rem;margin: 1rem 1.3rem;" id="image">
                 <a href="{% url 'details' category_name item.name %}" style="text-decoration: none;">
                     <img src="{{item.product_image.url}}" style="height: 15rem;width: 16.5rem;object-fit: contain;"
                         alt="Categories">
@@ -41,4 +41,8 @@ Amazon
         {% include "extends/pagination.html" with page=products %}
 </div>
 </section>
+<style>
+    #image:hover img{
+      transform: scale(1.05);}
+</style>
 {% endblock content %}

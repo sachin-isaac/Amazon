@@ -5,7 +5,7 @@ from django.contrib import messages
 
 def my_orders(request):
     try:
-        orders=Orders.objects.filter(user=request.user)
+        orders=Orderz.objects.filter(user=request.user)
         return render(request,'order/orders.html',{"orders":orders})
     except Exception as e:
         print(e)   
@@ -14,7 +14,7 @@ def my_orders(request):
 
 def order_details(request,oid):
     try:
-        order= Orders.objects.filter(id=oid).filter(user=request.user).first()
+        order= Orderz.objects.filter(id=oid).filter(user=request.user).first()
         if order:
             return render(request,'order/orderdetails.html',{"order":order})
         else:
@@ -31,7 +31,7 @@ def cancel_order(request):
         reason=request.POST.get("cancel")
         describe = request.POST.get("describe")
 
-        order= Orders.objects.filter(id=oid).filter(user=request.user).first()
+        order= Orderz.objects.filter(id=oid).filter(user=request.user).first()
         order.status="Cancelled"
         order.save()
         

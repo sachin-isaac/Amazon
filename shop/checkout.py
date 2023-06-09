@@ -62,7 +62,7 @@ def placeorder(request):
             
             neworderitems = Cart.objects.filter(user=request.user)
             for item in neworderitems:
-                Orders.objects.create(
+                Orderz.objects.create(
                     user=request.user,
                     product=item.product,
                     payment=payment,
@@ -143,7 +143,7 @@ def buy_placeorder(request):
             product_status=Product.objects.get(id=pid)
             if product_status:
                 if product_status.quantity>=int(qty):
-                    Orders.objects.create(
+                    Orderz.objects.create(
                                 user=request.user,
                                 product_id=pid,
                                 payment=payment,
